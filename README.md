@@ -19,6 +19,12 @@ Official pytorch code release of "[DEEPTalk: Dynamic Emotion Embedding for Proba
 }
 ```
 ## Settings
+### Environment
+
+
+### Download Checkpoints
+Download DEE, FER, TH-VQVAE, DEEPTalk checkpoints from [here](https://drive.google.com/drive/u/0/folders/1vmgJCvAq96C83eU4JuUFooubL-y7Py44).
+Place each files in ./DEE/checkpoint, ./FER/checkpoint, ./DEEPTalk/checkpoint/TH-VQVAE, ./DEEPTalk/checkpoint/DEEPTalk, respectively. 
 
 ## Inference
 ```
@@ -31,9 +37,7 @@ python demo.py \
 ```
 ## Training
 
-Certainly! Here's a revised version:
 
----
 
 ## Acknowledgements
 We gratefully acknowledge the open-source projects that served as the foundation for our work:
