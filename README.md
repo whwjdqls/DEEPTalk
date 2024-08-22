@@ -4,6 +4,7 @@ Official code release of "[DEEPTalk: Dynamic Emotion Embedding for Probabilistic
 <p align="center">
   <img src="./demo/teaser_final.png" alt="alt text" width="400">
 </p>
+
 ```
 @misc{kim2024deeptalkdynamicemotionembedding,
       title={DEEPTalk: Dynamic Emotion Embedding for Probabilistic Speech-Driven 3D Face Animation}, 
@@ -28,3 +29,18 @@ python demo.py \
 ```
 ## Training
 
+Certainly! Here's a revised version:
+
+---
+
+## Acknowledgements
+We gratefully acknowledge the open-source projects that served as the foundation for our work:
+
+- [EMOTE](https://github.com/radekd91/inferno)
+- [learning2listen](https://github.com/evonneng/learning2listen)
+- [PCME++](https://github.com/naver-ai/pcmepp)
+
+## License
+This code is released under the MIT License.
+
+Please note that our project relies on various other libraries, including FLAME, PyTorch3D, and Spectre, as well as several datasets.
