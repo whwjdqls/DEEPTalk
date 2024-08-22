@@ -1,0 +1,35 @@
+utils:
+  seed: 42
+  exp_name: base_BN_dropout0.3_leaky_weightloss_aug0.5_std0.02
+model:
+  name: MLP
+  batch_norm: true
+  dropout: 0.3
+  input_dim: 53
+  output_dim: 8
+  layers:
+  - 256
+  - 512
+  - 1024
+  - 512
+  - 256
+  - 128
+  - 64
+  activation: LeakyReLU
+data:
+  data_file_path: ./whole_data.pkl
+  label_file_path: ./affectnet_annotation.pkl
+train:
+  data_aug:
+    prob: 0.5
+    std: 0.02
+  num_epochs: 200
+  lr: 0.001
+  optimizer: Adam
+  loss: WeightedCrossEntropyLoss
+  scheduler: CosineAnnealingLR
+  save_every: 5
+  save_dir: ./output
+  batch_size: 5096
+val:
+  batch_size: 5096
