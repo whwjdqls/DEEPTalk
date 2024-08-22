@@ -1,0 +1,116 @@
+{
+    "project_name": "Motionprior",
+    "name": "TH-VQVAE",
+    "model_path": "./checkpoint/TH-VQVAE",
+    "training": {
+        "lr": 0.0005,
+        "batch_size": 256,
+        "num_epochs": 1500,
+        "log_step": 20,
+        "save_step": 10,
+        "save_dir": "./checkpoint/TH-VQVAE",
+        "loss": "vertice_L2",
+        "velocity_loss": false,
+        "velocity_loss_weight": 1000000,
+        "flame_jaw_loss": false,
+        "flame_jaw_loss_weight": 1.0,
+        "lr_schedule": "warmup",
+        "warmup_steps": 4000,
+        "quant_loss_wight": 1.0,
+        "recon_loss_weight": 1000000
+    },
+    "validation": {
+        "batch_size": 256
+    },
+    "data": {
+        "dataset": "MEAD",
+        "data_dir": "./MEAD/flame_param",
+        "expression_dir": "./MEAD/flame_param",
+        "window_size": 32,
+        "start_clip": 5,
+        "end_clip": 5,
+        "stride": 10,
+        "random_slice": true,
+        "full_length": false,
+        "smooth_expression": true
+    },
+    "flame_config": {
+        "use_face_contour": true,
+        "shape_params": 100,
+        "expression_params": 50,
+        "use_3D_translation": true,
+        "static_landmark_embedding_path": "models/flame_models/flame_static_embedding.pkl",
+        "dynamic_landmark_embedding_path": "models/flame_models/flame_dynamic_embedding.npy",
+        "flame_model_path": "models/flame_models/generic_model.pkl"
+    },
+    "encoder_t_config": {
+        "in_dim": 128,
+        "hidden_size": 128,
+        "num_hidden_layers": 1,
+        "num_attention_heads": 8,
+        "intermediate_size": 256,
+        "sequence_length": 16,
+        "quant_sequence_length": 4,
+        "quant_factor": 1,
+        "pos_encoding": false,
+        "max_len": 1000,
+        "temporal_bias": "alibi_future"
+    },
+    "encoder_b_config": {
+        "in_dim": 53,
+        "hidden_size": 128,
+        "num_hidden_layers": 1,
+        "num_attention_heads": 8,
+        "intermediate_size": 256,
+        "sequence_length": 32,
+        "quant_sequence_length": 16,
+        "quant_factor": 1,
+        "pos_encoding": false,
+        "max_len": 2000,
+        "temporal_bias": "alibi_future"
+    },
+    "VQuantizer_t": {
+        "version": "ema",
+        "reset_unused_codes": false,
+        "reinit_every_n_epochs": 0,
+        "n_embed": 256,
+        "zquant_dim": 128,
+        "beta": 0.25
+    },
+    "VQuantizer_b": {
+        "version": "ema",
+        "reset_unused_codes": false,
+        "reinit_every_n_epochs": 0,
+        "n_embed": 256,
+        "zquant_dim": 256,
+        "beta": 0.25
+    },
+    "decoder_t_config": {
+        "in_dim": 128,
+        "out_dim": 128,
+        "hidden_size": 128,
+        "num_hidden_layers": 1,
+        "num_attention_heads": 8,
+        "intermediate_size": 256,
+        "sequence_length": 16,
+        "quant_sequence_length": 4,
+        "quant_factor": 1,
+        "pos_encoding": false,
+        "max_len": 1000,
+        "temporal_bias": "alibi_future"
+    },
+    "decoder_b_config": {
+        "in_dim": 384,
+        "out_dim": 53,
+        "hidden_size": 384,
+        "num_hidden_layers": 1,
+        "num_attention_heads": 8,
+        "intermediate_size": 512,
+        "sequence_length": 32,
+        "quant_sequence_length": 8,
+        "quant_factor": 1,
+        "pos_encoding": false,
+        "max_len": 2000,
+        "temporal_bias": "alibi_future"
+    }
+}

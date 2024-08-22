@@ -1,0 +1,134 @@
+{
+    "project_name": "DEEPTalk",
+    "name": "best",
+    "model_path": "./checkpoint/DEEPTalk",
+    "training": {
+        "lr": 0.0001,
+        "batch_size": 16,
+        "num_epochs": 3,
+        "log_step": 10,
+        "save_step": 1,
+        "save_dir": "/checkpoint/DEEPTalk",
+        "tau_schedule": {
+            "start": 2,
+            "end": 0.1
+        }
+    },
+    "loss": {
+        "lip_reading_loss": {
+            "metric": "cosine_similarity",
+            "weight": 0.001,
+            "face_detect": true,
+            "E2E": {
+                "model": {
+                    "model_path": "externals/spectre/data/LRS3_V_WER32.3/model.pth",
+                    "model_conf": "externals/spectre/data/LRS3_V_WER32.3/model.json"
+                }
+            }
+        },
+        "swap": {
+            "use": true,
+            "weight": 2.5e-05
+        },
+        "AV_emo_loss": {
+            "use": true,
+            "weight": 0.0001,
+            "prob_method": "mean"
+        },
+        "VV_emo_loss": {
+            "use": false,
+            "weight": 0.001,
+            "prob_method": "mean"
+        },
+        "vertex_lip_loss": {
+            "use": false,
+            "mask_path": "./models/flame_models/FLAME_masks.pkl"
+        },
+        "vertex_velocity_loss": {
+            "use": false
+        }
+    },
+    "validation": {
+        "batch_size": 16
+    },
+    "data": {
+        "dataset": "MEAD",
+        "audio_dir": "./audio_sample",
+        "expression_dir": "./flame_param",
+        "random_slice": true,
+        "full_length": false,
+        "window_size": 1.28,
+        "start_clip": 0.2,
+        "end_clip": 0.2,
+        "stride": 1,
+        "fps": 25,
+        "disable_padding": false,
+        "smooth_expression": true
+    },
+    "flame_config": {
+        "use_face_contour": true,
+        "shape_params": 100,
+        "expression_params": 50,
+        "use_3D_translation": true,
+        "static_landmark_embedding_path": "models/flame_models/flame_static_embedding.pkl",
+        "dynamic_landmark_embedding_path": "models/flame_models/flame_dynamic_embedding.npy",
+        "flame_model_path": "models/flame_models/generic_model.pkl"
+    },
+    "motionprior_config": {
+        "config_path": "./checkpoint/TH-VQVAE/config_TH-VQVAE.json",
+        "checkpoint_path": "./checkpoint/TH-VQVAE/TH-VQVAE.pth",
+        "load_motion_prior": true
+    },
+    "audio_config": {
+        "model_specifier": "facebook/wav2vec2-base-960h",
+        "trainable": false,
+        "with_processor": true,
+        "freeze_feature_extractor": true,
+        "model_expected_fps": 50,
+        "target_fps": 25
+    },
+    "sequence_encoder_config": {
+        "feature_dim": 128
+    },
+    "sequence_decoder_config": {
+        "num_layers": 1,
+        "add_condition": false,
+        "feature_dim": 128,
+        "nhead": 8,
+        "dropout": 0.1,
+        "activation": "gelu",
+        "squash_before": false,
+        "squash_after": true,
+        "squash_type": "stack_transformer",
+        "hidden_sizes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "quant_factor": 2,
+        "latent_frame_size": 16,
+        "period": 25,
+        "positional_encoding": {
+            "type": "none"
+        },
+        "flame": {
+            "flame_model_path": "FLAME/geometry/generic_model.pkl",
+            "n_shape": 300,
+            "n_exp": 100,
+            "flame_lmk_embedding_path": "FLAME/geometry/landmark_embedding.npy"
+        },
+        "style_embedding": {
+            "n_intensities": 3,
+            "n_identities": 32,
+            "n_expression": 8
+        },
+        "DEE": {
+            "point_DEE": false,
+            "prob_DEE": true,
+            "num_samples": 1
+        }
+    }
+}
