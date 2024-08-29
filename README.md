@@ -19,6 +19,7 @@ Official pytorch code release of "[DEEPTalk: Dynamic Emotion Embedding for Proba
 }
 ```
 ## Settings
+REPOSITORY UNDER CONSTRUCTION
 ### Environment
 
 
@@ -31,7 +32,7 @@ Place each files in ./DEE/checkpoint, ./FER/checkpoint, ./DEEPTalk/checkpoint/TH
 cd DEEPTalk
 python demo.py \
 --DEMOTE_ckpt_path ./checkpoint/DEEPTalk/DEEPTalk.pth \
---DEE_ckpt_path ../DEE/checkpoint/DEE.tph \
+--DEE_ckpt_path ../DEE/checkpoint/DEE.pth \
 --audio_path ../demo/sample_audio.wav
 
 ```
